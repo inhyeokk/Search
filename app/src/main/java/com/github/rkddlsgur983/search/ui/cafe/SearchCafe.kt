@@ -11,15 +11,20 @@ import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.github.rkddlsgur983.search.data.cafe.model.Document
 import com.github.rkddlsgur983.search.extension.fromHtml
+
+@Composable
+fun SearchCafe(searchCafeViewModel: SearchCafeViewModel = viewModel()) {
+    val documents by searchCafeViewModel.documentListStateFlow.collectAsState()
+    SearchCafeList(documents)
+}
 
 @Composable
 fun SearchCafeList(
