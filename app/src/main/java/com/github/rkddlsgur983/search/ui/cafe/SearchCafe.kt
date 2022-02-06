@@ -23,15 +23,17 @@ import com.github.rkddlsgur983.search.extension.fromHtml
 @Composable
 fun SearchCafe(searchCafeViewModel: SearchCafeViewModel = viewModel()) {
     val documents by searchCafeViewModel.documentListStateFlow.collectAsState()
-    SearchCafeList(documents)
+    val (query, updateQuery) = remember { mutableStateOf(TextFieldValue("")) }
+    SearchCafeList(documents, query, updateQuery)
 }
 
 @Composable
 fun SearchCafeList(
     documents: List<Document>,
+    query: TextFieldValue,
+    updateQuery: (TextFieldValue) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val (query, updateQuery) = remember { mutableStateOf(TextFieldValue("")) }
     LazyColumn(modifier.fillMaxWidth()) {
         item { AppBar(query, updateQuery) }
         items(documents) { document ->
