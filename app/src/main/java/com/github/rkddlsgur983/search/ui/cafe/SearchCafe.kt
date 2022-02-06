@@ -22,8 +22,8 @@ import com.github.rkddlsgur983.search.extension.fromHtml
 @Composable
 fun SearchCafe(searchCafeViewModel: SearchCafeViewModel = viewModel()) {
     val documents by searchCafeViewModel.documentListStateFlow.collectAsState()
-    val (query, onQueryChange) = remember { mutableStateOf("") }
-    SearchCafeList(documents, query, onQueryChange)
+    val query by searchCafeViewModel.queryStateFlow.collectAsState()
+    SearchCafeList(documents, query, { searchCafeViewModel.setQuery(it) })
 }
 
 @Composable

@@ -14,7 +14,8 @@ import kotlinx.coroutines.launch
 class SearchCafeViewModel : ViewModel() {
     private val searchCafeRepository = SearchCafeRepository()
 
-    private val queryStateFlow = MutableStateFlow("")
+    private val _queryStateFlow = MutableStateFlow("")
+    val queryStateFlow: StateFlow<String> = _queryStateFlow
     private val sortTypeStateFlow = MutableStateFlow(SortType.ACCURACY)
     private val sizeStateFlow = MutableStateFlow(10)
     private var page = 1
@@ -26,23 +27,32 @@ class SearchCafeViewModel : ViewModel() {
         loadInit(query = "아이유")
     }
 
+    fun setQuery(query: String) {
+        _queryStateFlow.value = query
+        loadInit()
+    }
+
     fun loadInit(
-        query: String = queryStateFlow.value,
+        query: String = _queryStateFlow.value,
         sortType: SortType = sortTypeStateFlow.value,
         size: Int = sizeStateFlow.value
     ) {
-        queryStateFlow.value = query
+        _queryStateFlow.value = query
         sortTypeStateFlow.value = sortType
         sizeStateFlow.value = size
         page = 1
-        viewModelScope.launch(Dispatchers.IO) {
-            val searchCafeResponse = searchCafeRepository.searchCafe(query, sortType, page++, size)
-            _documentListStateFlow.value = searchCafeResponse.documents
+        if (query.isNotEmpty()) {
+            viewModelScope.launch(Dispatchers.IO) {
+                val searchCafeResponse = searchCafeRepository.searchCafe(query, sortType, page++, size)
+                _documentListStateFlow.value = searchCafeResponse.documents
+            }
+        } else {
+            _documentListStateFlow.value = emptyList()
         }
     }
 
     fun loadMore() {
-        val query = queryStateFlow.value
+        val query = _queryStateFlow.value
         val sortType = sortTypeStateFlow.value
         val size = sizeStateFlow.value
         viewModelScope.launch(Dispatchers.IO) {
