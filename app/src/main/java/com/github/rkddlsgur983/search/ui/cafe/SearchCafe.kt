@@ -14,7 +14,6 @@ import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.github.rkddlsgur983.search.data.cafe.model.Document
@@ -23,19 +22,19 @@ import com.github.rkddlsgur983.search.extension.fromHtml
 @Composable
 fun SearchCafe(searchCafeViewModel: SearchCafeViewModel = viewModel()) {
     val documents by searchCafeViewModel.documentListStateFlow.collectAsState()
-    val (query, updateQuery) = remember { mutableStateOf(TextFieldValue("")) }
-    SearchCafeList(documents, query, updateQuery)
+    val (query, onQueryChange) = remember { mutableStateOf("") }
+    SearchCafeList(documents, query, onQueryChange)
 }
 
 @Composable
 fun SearchCafeList(
     documents: List<Document>,
-    query: TextFieldValue,
-    updateQuery: (TextFieldValue) -> Unit,
+    query: String,
+    onQueryChange: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     LazyColumn(modifier.fillMaxWidth()) {
-        item { AppBar(query, updateQuery) }
+        item { AppBar(query, onQueryChange) }
         items(documents) { document ->
             SearchCafeListItem(
                 document = document,
@@ -57,8 +56,8 @@ fun SearchCafeListItem(
 
 @Composable
 private fun AppBar(
-    query: TextFieldValue,
-    updateQuery: (TextFieldValue) -> Unit
+    query: String,
+    onQueryChange: (String) -> Unit
 ) {
     TopAppBar(elevation = 0.dp) {
         Image(
@@ -71,7 +70,7 @@ private fun AppBar(
         // TODO hint
         BasicTextField(
             value = query,
-            onValueChange = updateQuery,
+            onValueChange = onQueryChange,
             maxLines = 1,
             modifier = Modifier
                 .weight(1f)
