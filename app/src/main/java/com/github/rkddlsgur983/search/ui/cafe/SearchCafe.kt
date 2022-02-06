@@ -60,13 +60,6 @@ private fun AppBar(
     onQueryChange: (String) -> Unit
 ) {
     TopAppBar(elevation = 0.dp) {
-        Image(
-            imageVector = Icons.Filled.Search,
-            contentDescription = null,
-            modifier = Modifier
-                .padding(16.dp)
-                .align(Alignment.CenterVertically)
-        )
         // TODO hint
         BasicTextField(
             value = query,
@@ -74,6 +67,13 @@ private fun AppBar(
             maxLines = 1,
             modifier = Modifier
                 .weight(1f)
+                .align(Alignment.CenterVertically)
+        )
+        Image(
+            imageVector = Icons.Filled.Search,
+            contentDescription = null,
+            modifier = Modifier
+                .padding(16.dp)
                 .align(Alignment.CenterVertically)
         )
     }
