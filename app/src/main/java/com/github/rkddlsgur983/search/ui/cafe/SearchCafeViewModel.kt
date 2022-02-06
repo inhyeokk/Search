@@ -29,7 +29,6 @@ class SearchCafeViewModel : ViewModel() {
 
     fun setQuery(query: String) {
         _queryStateFlow.value = query
-        loadInit()
     }
 
     fun loadInit(

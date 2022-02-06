@@ -1,6 +1,7 @@
 package com.github.rkddlsgur983.search.ui.cafe
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -23,18 +24,24 @@ import com.github.rkddlsgur983.search.extension.fromHtml
 fun SearchCafe(searchCafeViewModel: SearchCafeViewModel = viewModel()) {
     val query by searchCafeViewModel.queryStateFlow.collectAsState()
     val documents by searchCafeViewModel.documentListStateFlow.collectAsState()
-    SearchCafeList(query, { searchCafeViewModel.setQuery(it) }, documents)
+    SearchCafeList(
+        query = query,
+        onQueryChange = { searchCafeViewModel.setQuery(it) },
+        onSearchClicked = { searchCafeViewModel.loadInit() },
+        documents = documents
+    )
 }
 
 @Composable
 fun SearchCafeList(
     query: String,
     onQueryChange: (String) -> Unit,
+    onSearchClicked: () -> Unit,
     documents: List<Document>,
     modifier: Modifier = Modifier
 ) {
     LazyColumn(modifier.fillMaxWidth()) {
-        item { AppBar(query, onQueryChange) }
+        item { AppBar(query, onQueryChange, onSearchClicked) }
         items(documents) { document ->
             SearchCafeListItem(
                 document = document,
@@ -57,7 +64,8 @@ fun SearchCafeListItem(
 @Composable
 private fun AppBar(
     query: String,
-    onQueryChange: (String) -> Unit
+    onQueryChange: (String) -> Unit,
+    onSearchClicked: () -> Unit
 ) {
     TopAppBar(elevation = 0.dp) {
         // TODO hint
@@ -75,6 +83,7 @@ private fun AppBar(
             modifier = Modifier
                 .padding(16.dp)
                 .align(Alignment.CenterVertically)
+                .clickable { onSearchClicked() }
         )
     }
 }
