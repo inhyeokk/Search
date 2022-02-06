@@ -1,13 +1,23 @@
 package com.github.rkddlsgur983.search.ui.cafe
 
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.unit.dp
 import com.github.rkddlsgur983.search.data.cafe.model.Document
 import com.github.rkddlsgur983.search.extension.fromHtml
 
@@ -16,14 +26,14 @@ fun SearchCafeList(
     documents: List<Document>,
     modifier: Modifier = Modifier
 ) {
-    Box(modifier) {
-        LazyColumn(Modifier.fillMaxWidth()) {
-            items(documents) { document ->
-                SearchCafeListItem(
-                    document = document,
-                    modifier = Modifier.fillMaxWidth()
-                )
-            }
+    val (query, updateQuery) = remember { mutableStateOf(TextFieldValue("")) }
+    LazyColumn(modifier.fillMaxWidth()) {
+        item { AppBar(query, updateQuery) }
+        items(documents) { document ->
+            SearchCafeListItem(
+                document = document,
+                modifier = Modifier.fillMaxWidth()
+            )
         }
     }
 }
@@ -35,5 +45,30 @@ fun SearchCafeListItem(
 ) {
     Column(modifier) {
         Text(text = document.title.fromHtml().toString())
+    }
+}
+
+@Composable
+private fun AppBar(
+    query: TextFieldValue,
+    updateQuery: (TextFieldValue) -> Unit
+) {
+    TopAppBar(elevation = 0.dp) {
+        Image(
+            imageVector = Icons.Filled.Search,
+            contentDescription = null,
+            modifier = Modifier
+                .padding(16.dp)
+                .align(Alignment.CenterVertically)
+        )
+        // TODO hint
+        BasicTextField(
+            value = query,
+            onValueChange = updateQuery,
+            maxLines = 1,
+            modifier = Modifier
+                .weight(1f)
+                .align(Alignment.CenterVertically)
+        )
     }
 }
