@@ -26,7 +26,7 @@ fun SearchCafe(searchCafeViewModel: SearchCafeViewModel = viewModel()) {
     val documents by searchCafeViewModel.documentListStateFlow.collectAsState()
     SearchCafeList(
         query = query,
-        onQueryChange = { searchCafeViewModel.setQuery(it) },
+        onQueryChanged = { searchCafeViewModel.setQuery(it) },
         onSearchClicked = { searchCafeViewModel.loadInit() },
         documents = documents
     )
@@ -35,13 +35,13 @@ fun SearchCafe(searchCafeViewModel: SearchCafeViewModel = viewModel()) {
 @Composable
 fun SearchCafeList(
     query: String,
-    onQueryChange: (String) -> Unit,
+    onQueryChanged: (String) -> Unit,
     onSearchClicked: () -> Unit,
     documents: List<Document>,
     modifier: Modifier = Modifier
 ) {
     LazyColumn(modifier.fillMaxWidth()) {
-        item { AppBar(query, onQueryChange, onSearchClicked) }
+        item { AppBar(query, onQueryChanged, onSearchClicked) }
         items(documents) { document ->
             SearchCafeListItem(
                 document = document,
@@ -64,14 +64,14 @@ fun SearchCafeListItem(
 @Composable
 private fun AppBar(
     query: String,
-    onQueryChange: (String) -> Unit,
+    onQueryChanged: (String) -> Unit,
     onSearchClicked: () -> Unit
 ) {
     TopAppBar(elevation = 0.dp) {
         // TODO hint
         BasicTextField(
             value = query,
-            onValueChange = onQueryChange,
+            onValueChange = onQueryChanged,
             maxLines = 1,
             modifier = Modifier
                 .weight(1f)
