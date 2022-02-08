@@ -6,28 +6,32 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.paging.compose.LazyPagingItems
+import androidx.paging.compose.collectAsLazyPagingItems
+import androidx.paging.compose.items
 import com.github.rkddlsgur983.search.data.cafe.model.Document
 import com.github.rkddlsgur983.search.extension.fromHtml
 
 @Composable
 fun SearchCafe(searchCafeViewModel: SearchCafeViewModel = viewModel()) {
     val query by searchCafeViewModel.queryStateFlow.collectAsState()
-    val documents by searchCafeViewModel.documentListStateFlow.collectAsState()
+    val documents = searchCafeViewModel.documentListStateFlow.collectAsLazyPagingItems()
     SearchCafeList(
         query = query,
         onQueryChanged = { searchCafeViewModel.setQuery(it) },
-        onSearchClicked = { searchCafeViewModel.loadInit() },
+        onSearchClicked = { searchCafeViewModel.onSearchClick(query) },
         documents = documents
     )
 }
@@ -37,16 +41,18 @@ fun SearchCafeList(
     query: String,
     onQueryChanged: (String) -> Unit,
     onSearchClicked: () -> Unit,
-    documents: List<Document>,
+    documents: LazyPagingItems<Document>,
     modifier: Modifier = Modifier
 ) {
     LazyColumn(modifier.fillMaxWidth()) {
         item { AppBar(query, onQueryChanged, onSearchClicked) }
         items(documents) { document ->
-            SearchCafeListItem(
-                document = document,
-                modifier = Modifier.fillMaxWidth()
-            )
+            document?.let {
+                SearchCafeListItem(
+                    document = it,
+                    modifier = Modifier.fillMaxWidth()
+                )
+            }
         }
     }
 }

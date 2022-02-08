@@ -1,14 +1,21 @@
 package com.github.rkddlsgur983.search.data.cafe
 
-import com.github.rkddlsgur983.search.api.KakaoSearchServiceFactory
-import com.github.rkddlsgur983.search.api.SearchCafeApi
-import com.github.rkddlsgur983.search.data.cafe.model.SearchCafeResponse
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import com.github.rkddlsgur983.search.data.cafe.model.Document
+import kotlinx.coroutines.flow.Flow
 
 class SearchCafeRepository {
 
-    private val searchCafeApi = KakaoSearchServiceFactory.create(SearchCafeApi::class.java)
+    fun searchCafe(query: String, sortType: SortType): Flow<PagingData<Document>> {
+        return Pager(
+            config = PagingConfig(pageSize = PAGE_SIZE, enablePlaceholders = false),
+            pagingSourceFactory = { SearchCafePagingSource(query, sortType) }
+        ).flow
+    }
 
-    suspend fun searchCafe(query: String, sortType: SortType, page: Int, size: Int): SearchCafeResponse {
-        return searchCafeApi.searchCafe(query, sortType.value, page, size)
+    companion object {
+        private const val PAGE_SIZE = 10
     }
 }

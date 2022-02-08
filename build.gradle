@@ -3,6 +3,8 @@ buildscript {
     ext {
         kotlinVersion = '1.5.31'
         composeVersion = '1.0.5'
+        pagingVersion = '3.1.0'
+        pagingComposeVersion = '1.0.0-alpha14'
 
         okhttpLoggingVersion = '4.7.2'
         retrofitVersion = '2.9.0'
