@@ -8,7 +8,9 @@ import androidx.fragment.app.viewModels
 import com.rkddlsgur983.search.R
 import com.rkddlsgur983.search.databinding.FragmentSearchCafeBinding
 import com.rkddlsgur983.search.presentation.ui.cafe.adapter.SearchCafeAdapter
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SearchCafeFragment : Fragment(R.layout.fragment_search_cafe) {
 
     private val viewModel by viewModels<SearchCafeViewModel>()

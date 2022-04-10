@@ -5,14 +5,17 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.rkddlsgur983.search.data.remote.cafe.SearchCafeRepositoryImpl
 import com.rkddlsgur983.search.data.remote.cafe.SortType
 import com.rkddlsgur983.search.domain.SearchCafeRepository
 import com.rkddlsgur983.search.presentation.ui.cafe.model.Document
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class SearchCafeViewModel : ViewModel() {
-    private val searchCafeRepository: SearchCafeRepository = SearchCafeRepositoryImpl()
+@HiltViewModel
+class SearchCafeViewModel @Inject constructor(
+    private val searchCafeRepository: SearchCafeRepository
+) : ViewModel() {
 
     val queryLiveData = MutableLiveData<String>()
     private val _sortTypeLiveDate = MutableLiveData(SortType.ACCURACY)

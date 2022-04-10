@@ -3,17 +3,17 @@ package com.rkddlsgur983.search.data.remote.cafe
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.rkddlsgur983.search.data.remote.api.KakaoSearchServiceFactory
 import com.rkddlsgur983.search.data.remote.api.SearchCafeApi
 import com.rkddlsgur983.search.data.remote.cafe.model.Document
 import com.rkddlsgur983.search.data.remote.cafe.model.SearchCafeResponse
 import com.rkddlsgur983.search.domain.SearchCafeRepository
 import kotlinx.coroutines.flow.Flow
 import retrofit2.await
+import javax.inject.Inject
 
-class SearchCafeRepositoryImpl : SearchCafeRepository {
-
-    private val searchCafeApi = KakaoSearchServiceFactory.create(SearchCafeApi::class.java)
+class SearchCafeRepositoryImpl @Inject constructor(
+    private val searchCafeApi: SearchCafeApi
+) : SearchCafeRepository {
 
     override suspend fun searchCafe(
         query: String,

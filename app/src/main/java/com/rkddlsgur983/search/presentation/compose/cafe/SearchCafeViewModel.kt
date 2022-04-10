@@ -6,13 +6,17 @@ import androidx.paging.cachedIn
 import com.rkddlsgur983.search.data.remote.cafe.SearchCafeRepositoryImpl
 import com.rkddlsgur983.search.data.remote.cafe.SortType
 import com.rkddlsgur983.search.domain.SearchCafeRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.flatMapLatest
+import javax.inject.Inject
 
-class SearchCafeViewModel : ViewModel() {
-    private val searchCafeRepository: SearchCafeRepository = SearchCafeRepositoryImpl()
+@HiltViewModel
+class SearchCafeViewModel @Inject constructor(
+    private val searchCafeRepository: SearchCafeRepository
+) : ViewModel() {
 
     private val _queryStateFlow = MutableStateFlow("")
     val queryStateFlow: StateFlow<String> = _queryStateFlow

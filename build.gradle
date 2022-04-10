@@ -6,6 +6,7 @@ buildscript {
         pagingVersion = '3.1.0'
         pagingComposeVersion = '1.0.0-alpha14'
         navigationVersion = '2.4.1'
+        hiltVersion = '2.41'
 
         okhttpLoggingVersion = '4.7.2'
         retrofitVersion = '2.9.0'
@@ -17,6 +18,7 @@ buildscript {
     dependencies {
         classpath "com.android.tools.build:gradle:7.0.4"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+        classpath "com.google.dagger:hilt-android-gradle-plugin:$hiltVersion"
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
