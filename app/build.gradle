@@ -12,7 +12,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.github.rkddlsgur983.search"
+        applicationId "com.rkddlsgur983.search"
         minSdk 24
         targetSdk 31
         versionCode 1
