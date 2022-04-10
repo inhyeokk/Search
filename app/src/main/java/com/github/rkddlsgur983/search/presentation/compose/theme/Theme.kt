@@ -1,4 +1,4 @@
-package com.github.rkddlsgur983.search.ui.theme
+package com.github.rkddlsgur983.search.presentation.compose.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme

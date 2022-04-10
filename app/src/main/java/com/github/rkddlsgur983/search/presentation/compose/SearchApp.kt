@@ -1,10 +1,10 @@
-package com.github.rkddlsgur983.search
+package com.github.rkddlsgur983.search.presentation.compose
 
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
-import com.github.rkddlsgur983.search.ui.cafe.SearchCafe
-import com.github.rkddlsgur983.search.ui.theme.SearchTheme
+import com.github.rkddlsgur983.search.presentation.compose.cafe.SearchCafe
+import com.github.rkddlsgur983.search.presentation.compose.theme.SearchTheme
 
 @Composable
 fun SearchApp() {

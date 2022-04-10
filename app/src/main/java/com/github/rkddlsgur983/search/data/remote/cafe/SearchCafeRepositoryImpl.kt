@@ -1,9 +1,9 @@
-package com.github.rkddlsgur983.search.data.cafe
+package com.github.rkddlsgur983.search.data.remote.cafe
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.github.rkddlsgur983.search.data.cafe.model.Document
+import com.github.rkddlsgur983.search.data.remote.cafe.model.Document
 import com.github.rkddlsgur983.search.domain.SearchCafeRepository
 import kotlinx.coroutines.flow.Flow
 

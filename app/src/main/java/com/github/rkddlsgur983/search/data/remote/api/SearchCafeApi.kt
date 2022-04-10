@@ -1,6 +1,6 @@
-package com.github.rkddlsgur983.search.api
+package com.github.rkddlsgur983.search.data.remote.api
 
-import com.github.rkddlsgur983.search.data.cafe.model.SearchCafeResponse
+import com.github.rkddlsgur983.search.data.remote.cafe.model.SearchCafeResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 

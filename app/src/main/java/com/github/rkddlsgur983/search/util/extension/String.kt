@@ -1,4 +1,4 @@
-package com.github.rkddlsgur983.search.extension
+package com.github.rkddlsgur983.search.util.extension
 
 import android.text.Html
 import android.text.Spanned

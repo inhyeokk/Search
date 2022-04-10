@@ -1,10 +1,10 @@
-package com.github.rkddlsgur983.search.ui.cafe
+package com.github.rkddlsgur983.search.presentation.compose.cafe
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
-import com.github.rkddlsgur983.search.data.cafe.SearchCafeRepositoryImpl
-import com.github.rkddlsgur983.search.data.cafe.SortType
+import com.github.rkddlsgur983.search.data.remote.cafe.SearchCafeRepositoryImpl
+import com.github.rkddlsgur983.search.data.remote.cafe.SortType
 import com.github.rkddlsgur983.search.domain.SearchCafeRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow

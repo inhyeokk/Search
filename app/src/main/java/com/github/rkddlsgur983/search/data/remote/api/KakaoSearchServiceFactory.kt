@@ -1,4 +1,4 @@
-package com.github.rkddlsgur983.search.api
+package com.github.rkddlsgur983.search.data.remote.api
 
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient

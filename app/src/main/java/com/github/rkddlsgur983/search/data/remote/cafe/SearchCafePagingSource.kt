@@ -1,10 +1,10 @@
-package com.github.rkddlsgur983.search.data.cafe
+package com.github.rkddlsgur983.search.data.remote.cafe
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.github.rkddlsgur983.search.api.KakaoSearchServiceFactory
-import com.github.rkddlsgur983.search.api.SearchCafeApi
-import com.github.rkddlsgur983.search.data.cafe.model.Document
+import com.github.rkddlsgur983.search.data.remote.api.KakaoSearchServiceFactory
+import com.github.rkddlsgur983.search.data.remote.api.SearchCafeApi
+import com.github.rkddlsgur983.search.data.remote.cafe.model.Document
 import retrofit2.HttpException
 import java.io.IOException
 

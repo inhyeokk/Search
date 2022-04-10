@@ -1,4 +1,4 @@
-package com.github.rkddlsgur983.search.data.cafe
+package com.github.rkddlsgur983.search.data.remote.cafe
 
 enum class SortType(val value: String) {
     ACCURACY("accuracy"),

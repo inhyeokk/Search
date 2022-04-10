@@ -1,10 +1,10 @@
-package com.github.rkddlsgur983.search
+package com.github.rkddlsgur983.search.presentation.compose
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 
-class MainActivity : ComponentActivity() {
+class SearchComposeActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

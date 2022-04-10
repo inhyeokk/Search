@@ -1,4 +1,4 @@
-package com.github.rkddlsgur983.search.ui.cafe
+package com.github.rkddlsgur983.search.presentation.compose.cafe
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -21,8 +21,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
-import com.github.rkddlsgur983.search.data.cafe.model.Document
-import com.github.rkddlsgur983.search.extension.fromHtml
+import com.github.rkddlsgur983.search.data.remote.cafe.model.Document
+import com.github.rkddlsgur983.search.util.extension.fromHtml
 
 @Composable
 fun SearchCafe(searchCafeViewModel: SearchCafeViewModel = viewModel()) {

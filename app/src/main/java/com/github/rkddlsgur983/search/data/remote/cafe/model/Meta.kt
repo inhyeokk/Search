@@ -1,4 +1,4 @@
-package com.github.rkddlsgur983.search.data.cafe.model
+package com.github.rkddlsgur983.search.data.remote.cafe.model
 
 import com.google.gson.annotations.SerializedName
 
