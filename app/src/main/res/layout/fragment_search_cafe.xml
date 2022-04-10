@@ -1,14 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.rkddlsgur983.search.presentation.ui.cafe.SearchCafeViewModel" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ctl_search_cafe"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
+        <EditText
+            android:id="@+id/et_search_cafe"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:text="@={vm.queryLiveData}"
+            app:layout_constraintBottom_toTopOf="@id/rv_search_cafe"
+            app:layout_constraintEnd_toStartOf="@id/iv_search_cafe"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_search_cafe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_search"
+            app:layout_constraintBottom_toBottomOf="@id/et_search_cafe"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/et_search_cafe"
+            app:layout_constraintTop_toTopOf="@id/et_search_cafe" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_search_cafe"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="SearchCafeFragment" />
+            android:layout_height="0dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_search_cafe" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

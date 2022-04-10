@@ -21,7 +21,7 @@ class SearchCafeViewModel : ViewModel() {
 
     @ExperimentalCoroutinesApi
     val documentListStateFlow = onSearchClick.flatMapLatest { query ->
-        searchCafeRepository.searchCafe(query, sortTypeStateFlow.value).cachedIn(viewModelScope)
+        searchCafeRepository.searchCafeWithPaging(query, sortTypeStateFlow.value).cachedIn(viewModelScope)
     }
 
     fun setQuery(query: String) {
