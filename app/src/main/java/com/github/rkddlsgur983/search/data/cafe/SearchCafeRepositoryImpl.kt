@@ -4,11 +4,12 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.github.rkddlsgur983.search.data.cafe.model.Document
+import com.github.rkddlsgur983.search.domain.SearchCafeRepository
 import kotlinx.coroutines.flow.Flow
 
-class SearchCafeRepository {
+class SearchCafeRepositoryImpl : SearchCafeRepository {
 
-    fun searchCafe(query: String, sortType: SortType): Flow<PagingData<Document>> {
+    override fun searchCafe(query: String, sortType: SortType): Flow<PagingData<Document>> {
         return Pager(
             config = PagingConfig(pageSize = PAGE_SIZE, enablePlaceholders = false),
             pagingSourceFactory = { SearchCafePagingSource(query, sortType) }
