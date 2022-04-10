@@ -2,13 +2,14 @@
 buildscript {
     ext {
         kotlinVersion = '1.5.31'
-        composeVersion = '1.0.5'
-        pagingVersion = '3.1.0'
+        lifecycleVersion = '2.4.1'
+        composeVersion = '1.1.1'
+        pagingVersion = '3.1.1'
         pagingComposeVersion = '1.0.0-alpha14'
         navigationVersion = '2.4.1'
         hiltVersion = '2.41'
 
-        okhttpLoggingVersion = '4.7.2'
+        okhttpLoggingVersion = '4.9.3'
         retrofitVersion = '2.9.0'
     }
     repositories {
