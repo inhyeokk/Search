@@ -8,6 +8,7 @@ import androidx.paging.map
 import com.rkddlsgur983.search.data.remote.cafe.SortType
 import com.rkddlsgur983.search.domain.cafe.SearchCafeRepository
 import com.rkddlsgur983.search.presentation.cafe.model.Document
+import com.rkddlsgur983.search.util.extension.fromHtml
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
@@ -32,8 +33,8 @@ class SearchCafeViewModel @Inject constructor(
                 pagingData.map {
                     Document(
                         id = System.currentTimeMillis(),
-                        title = it.title,
-                        contents = it.contents,
+                        title = it.title.fromHtml(),
+                        contents = it.contents.fromHtml(),
                         url = it.url,
                         cafeName = it.cafename,
                         thumbnail = it.thumbnail,

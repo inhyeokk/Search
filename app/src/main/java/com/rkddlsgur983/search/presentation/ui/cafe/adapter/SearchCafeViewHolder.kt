@@ -10,12 +10,8 @@ class SearchCafeViewHolder private constructor(
     private val binding: ItemSearchCafeBinding
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(document: Document?) {
-        if (document != null) {
-            binding.tvDocument.text = document.toString()
-        } else {
-            // placeholder
-        }
+    fun bind(document: Document) {
+        binding.document = document
     }
 
     companion object {

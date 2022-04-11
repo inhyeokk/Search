@@ -64,7 +64,7 @@ fun SearchCafeListItem(
     modifier: Modifier
 ) {
     Column(modifier) {
-        Text(text = document.title.fromHtml().toString())
+        Text(text = document.title)
     }
 }
 
