@@ -13,10 +13,6 @@ class SearchCafePagingSource(
     private val sortType: SortType
 ) : PagingSource<Int, Document>() {
 
-    override fun getRefreshKey(state: PagingState<Int, Document>): Int? {
-        return state.anchorPosition?.let { it + 1 }
-    }
-
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Document> {
         if (query.isNotEmpty()) {
             val page = params.key ?: STARTING_PAGE_INDEX
@@ -40,6 +36,10 @@ class SearchCafePagingSource(
                 nextKey = null
             )
         }
+    }
+
+    override fun getRefreshKey(state: PagingState<Int, Document>): Int? {
+        return state.anchorPosition?.let { it + 1 }
     }
 
     companion object {
