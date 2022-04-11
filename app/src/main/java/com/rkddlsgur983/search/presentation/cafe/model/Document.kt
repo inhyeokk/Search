@@ -1,10 +1,11 @@
-package com.rkddlsgur983.search.data.remote.cafe.model
+package com.rkddlsgur983.search.presentation.cafe.model
 
 data class Document(
+    val id: Long,
     val title: String,
     val contents: String,
     val url: String,
-    val cafename: String,
+    val cafeName: String,
     val thumbnail: String,
     val datetime: String
 )

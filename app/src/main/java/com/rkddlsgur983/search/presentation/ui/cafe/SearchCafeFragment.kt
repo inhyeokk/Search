@@ -5,10 +5,14 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.rkddlsgur983.search.R
 import com.rkddlsgur983.search.databinding.FragmentSearchCafeBinding
+import com.rkddlsgur983.search.presentation.cafe.SearchCafeViewModel
 import com.rkddlsgur983.search.presentation.ui.cafe.adapter.SearchCafeAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class SearchCafeFragment : Fragment(R.layout.fragment_search_cafe) {
@@ -32,14 +36,14 @@ class SearchCafeFragment : Fragment(R.layout.fragment_search_cafe) {
         binding.etSearchCafe.setOnEditorActionListener { _, actionId, _ ->
             when (actionId) {
                 EditorInfo.IME_ACTION_SEARCH -> {
-                    viewModel.searchCafe()
+                    viewModel.onSearchClick()
                     true
                 }
                 else -> false
             }
         }
         binding.ivSearchCafe.setOnClickListener {
-            viewModel.searchCafe()
+            viewModel.onSearchClick()
         }
         binding.rvSearchCafe.adapter = searchCafeAdapter
     }
@@ -47,8 +51,10 @@ class SearchCafeFragment : Fragment(R.layout.fragment_search_cafe) {
     private fun initViewModel(
         searchCafeAdapter: SearchCafeAdapter
     ) {
-        viewModel.documentListLiveData.observe(viewLifecycleOwner) {
-            searchCafeAdapter.submitList(it)
+        lifecycleScope.launch {
+            viewModel.documentListStateFlow.collectLatest { pagingData ->
+                searchCafeAdapter.submitData(pagingData)
+            }
         }
     }
 }

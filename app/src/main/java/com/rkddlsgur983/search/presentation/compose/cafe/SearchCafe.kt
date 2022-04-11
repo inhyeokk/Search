@@ -21,7 +21,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
-import com.rkddlsgur983.search.data.remote.cafe.model.Document
+import com.rkddlsgur983.search.presentation.cafe.SearchCafeViewModel
+import com.rkddlsgur983.search.presentation.cafe.model.Document
 import com.rkddlsgur983.search.util.extension.fromHtml
 
 @Composable

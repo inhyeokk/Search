@@ -1,11 +1,11 @@
 package com.rkddlsgur983.search.presentation.ui.cafe.adapter
 
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
-import com.rkddlsgur983.search.presentation.ui.cafe.model.Document
+import com.rkddlsgur983.search.presentation.cafe.model.Document
 
-class SearchCafeAdapter : ListAdapter<Document, SearchCafeViewHolder>(DiffCallback) {
+class SearchCafeAdapter : PagingDataAdapter<Document, SearchCafeViewHolder>(DiffCallback) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchCafeViewHolder {
         return SearchCafeViewHolder.create(parent)
     }

@@ -6,7 +6,7 @@
 
         <variable
             name="vm"
-            type="com.rkddlsgur983.search.presentation.ui.cafe.SearchCafeViewModel" />
+            type="com.rkddlsgur983.search.presentation.cafe.SearchCafeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,7 +21,7 @@
             android:background="@android:color/transparent"
             android:imeOptions="actionSearch"
             android:inputType="text"
-            android:text="@={vm.queryLiveData}"
+            android:text="@={vm.queryStateFlow}"
             app:layout_constraintBottom_toTopOf="@id/rv_search_cafe"
             app:layout_constraintEnd_toStartOf="@id/iv_search_cafe"
             app:layout_constraintStart_toStartOf="parent"
