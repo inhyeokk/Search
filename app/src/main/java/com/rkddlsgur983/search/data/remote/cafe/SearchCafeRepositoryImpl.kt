@@ -28,7 +28,7 @@ class SearchCafeRepositoryImpl @Inject constructor(
     ): Flow<PagingData<Document>> {
         return Pager(
             config = PagingConfig(pageSize = PAGE_SIZE, enablePlaceholders = false),
-            pagingSourceFactory = { SearchCafePagingSource(query, sortType) }
+            pagingSourceFactory = { SearchCafePagingSource(searchCafeApi, query, sortType) }
         ).flow
     }
 
