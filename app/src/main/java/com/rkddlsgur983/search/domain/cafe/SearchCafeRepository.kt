@@ -1,4 +1,4 @@
-package com.rkddlsgur983.search.domain
+package com.rkddlsgur983.search.domain.cafe
 
 import androidx.paging.PagingData
 import com.rkddlsgur983.search.data.remote.cafe.SortType

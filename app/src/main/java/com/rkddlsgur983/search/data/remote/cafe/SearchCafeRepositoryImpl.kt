@@ -6,7 +6,7 @@ import androidx.paging.PagingData
 import com.rkddlsgur983.search.data.remote.api.SearchCafeApi
 import com.rkddlsgur983.search.data.remote.cafe.model.DocumentDTO
 import com.rkddlsgur983.search.data.remote.cafe.model.SearchCafeResponse
-import com.rkddlsgur983.search.domain.SearchCafeRepository
+import com.rkddlsgur983.search.domain.cafe.SearchCafeRepository
 import kotlinx.coroutines.flow.Flow
 import retrofit2.await
 import javax.inject.Inject

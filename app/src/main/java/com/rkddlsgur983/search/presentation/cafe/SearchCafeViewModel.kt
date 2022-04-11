@@ -6,7 +6,7 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import androidx.paging.map
 import com.rkddlsgur983.search.data.remote.cafe.SortType
-import com.rkddlsgur983.search.domain.SearchCafeRepository
+import com.rkddlsgur983.search.domain.cafe.SearchCafeRepository
 import com.rkddlsgur983.search.presentation.cafe.model.Document
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi

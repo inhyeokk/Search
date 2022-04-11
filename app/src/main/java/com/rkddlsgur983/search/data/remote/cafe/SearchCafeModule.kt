@@ -2,7 +2,7 @@ package com.rkddlsgur983.search.data.remote.cafe
 
 import com.rkddlsgur983.search.data.remote.api.KakaoSearchServiceFactory
 import com.rkddlsgur983.search.data.remote.api.SearchCafeApi
-import com.rkddlsgur983.search.domain.SearchCafeRepository
+import com.rkddlsgur983.search.domain.cafe.SearchCafeRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
