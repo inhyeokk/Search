@@ -5,24 +5,15 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.rkddlsgur983.search.data.remote.api.SearchCafeApi
 import com.rkddlsgur983.search.data.remote.cafe.model.DocumentDTO
-import com.rkddlsgur983.search.data.remote.cafe.model.SearchCafeResponse
 import com.rkddlsgur983.search.domain.cafe.SearchCafeRepository
 import kotlinx.coroutines.flow.Flow
-import retrofit2.await
 import javax.inject.Inject
 
 class SearchCafeRepositoryImpl @Inject constructor(
     private val searchCafeApi: SearchCafeApi
 ) : SearchCafeRepository {
 
-    override suspend fun searchCafe(
-        query: String,
-        sortType: SortType
-    ): SearchCafeResponse {
-        return searchCafeApi.searchCafeWithCall(query, sortType.value).await()
-    }
-
-    override fun searchCafeWithPaging(
+    override fun searchCafe(
         query: String,
         sortType: SortType
     ): Flow<PagingData<DocumentDTO>> {

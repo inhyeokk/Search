@@ -27,7 +27,7 @@ class SearchCafeViewModel @Inject constructor(
 
     @ExperimentalCoroutinesApi
     val documentListStateFlow: Flow<PagingData<Document>> = onSearchClick.flatMapLatest { query ->
-        searchCafeRepository.searchCafeWithPaging(query, sortTypeStateFlow.value)
+        searchCafeRepository.searchCafe(query, sortTypeStateFlow.value)
             .cachedIn(viewModelScope).map { pagingData ->
                 pagingData.map {
                     Document(
