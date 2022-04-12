@@ -24,6 +24,6 @@ class SearchCafeRepositoryImpl @Inject constructor(
     }
 
     companion object {
-        private const val PAGE_SIZE = 10
+        const val PAGE_SIZE = 10
     }
 }

@@ -22,7 +22,7 @@ class SearchCafePagingSource(
                 LoadResult.Page(
                     data = documents,
                     prevKey = if (page == STARTING_PAGE_INDEX) null else page - 1,
-                    nextKey = if (documents.isEmpty()) null else page + 1
+                    nextKey = if (documents.isEmpty()) null else page + params.loadSize / SearchCafeRepositoryImpl.PAGE_SIZE
                 )
             } catch (exception: IOException) {
                 LoadResult.Error(exception)
@@ -38,8 +38,14 @@ class SearchCafePagingSource(
         }
     }
 
+    // prevKey == null -> anchorPage is the first page.
+    // nextKey == null -> anchorPage is the last page.
+    // both prevKey and nextKey null -> anchorPage is the initial page, so just return null.
     override fun getRefreshKey(state: PagingState<Int, DocumentDTO>): Int? {
-        return state.anchorPosition?.let { it + 1 }
+        return state.anchorPosition?.let { anchorPosition ->
+            val anchorPage = state.closestPageToPosition(anchorPosition)
+            anchorPage?.prevKey?.plus(1) ?: anchorPage?.nextKey?.minus(1)
+        }
     }
 
     companion object {
