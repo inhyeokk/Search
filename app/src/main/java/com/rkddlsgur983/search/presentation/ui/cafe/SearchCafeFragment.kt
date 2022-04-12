@@ -12,6 +12,7 @@ import com.rkddlsgur983.search.R
 import com.rkddlsgur983.search.databinding.FragmentSearchCafeBinding
 import com.rkddlsgur983.search.presentation.cafe.SearchCafeViewModel
 import com.rkddlsgur983.search.presentation.ui.cafe.adapter.SearchCafeAdapter
+import com.rkddlsgur983.search.presentation.ui.cafe.adapter.SearchCafeLoadStateAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
@@ -57,7 +58,10 @@ class SearchCafeFragment : Fragment(R.layout.fragment_search_cafe) {
         binding.ivSearchCafe.setOnClickListener {
             viewModel.onSearchClick()
         }
-        binding.rvSearchCafe.adapter = searchCafeAdapter
+        binding.rvSearchCafe.adapter = searchCafeAdapter.withLoadStateHeaderAndFooter(
+            header = SearchCafeLoadStateAdapter { searchCafeAdapter.retry() },
+            footer = SearchCafeLoadStateAdapter { searchCafeAdapter.retry() }
+        )
         lifecycleScope.launch {
             searchCafeAdapter.loadStateFlow
                 .distinctUntilChangedBy { it.refresh } // refresh 값이 변경되는 시점을 트리거
