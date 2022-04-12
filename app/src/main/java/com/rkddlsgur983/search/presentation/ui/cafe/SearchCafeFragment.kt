@@ -7,12 +7,16 @@ import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.paging.LoadState
 import com.rkddlsgur983.search.R
 import com.rkddlsgur983.search.databinding.FragmentSearchCafeBinding
 import com.rkddlsgur983.search.presentation.cafe.SearchCafeViewModel
 import com.rkddlsgur983.search.presentation.ui.cafe.adapter.SearchCafeAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.distinctUntilChangedBy
+import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -54,6 +58,12 @@ class SearchCafeFragment : Fragment(R.layout.fragment_search_cafe) {
             viewModel.onSearchClick()
         }
         binding.rvSearchCafe.adapter = searchCafeAdapter
+        lifecycleScope.launch {
+            searchCafeAdapter.loadStateFlow
+                .distinctUntilChangedBy { it.refresh } // refresh 값이 변경되는 시점을 트리거
+                .filter { it.refresh is LoadState.NotLoading } // refresh 가 시작되기 전 NotLoading
+                .collect { binding.rvSearchCafe.scrollToPosition(0) }
+        }
     }
 
     private fun initViewModel(
