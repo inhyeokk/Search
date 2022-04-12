@@ -1,6 +1,7 @@
 package com.rkddlsgur983.search.presentation.ui.cafe
 
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.Fragment
@@ -34,12 +35,19 @@ class SearchCafeFragment : Fragment(R.layout.fragment_search_cafe) {
         binding.vm = viewModel
         binding.lifecycleOwner = this
         binding.etSearchCafe.setOnEditorActionListener { _, actionId, _ ->
-            when (actionId) {
-                EditorInfo.IME_ACTION_SEARCH -> {
-                    viewModel.onSearchClick()
-                    true
-                }
-                else -> false
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                viewModel.onSearchClick()
+                true
+            } else {
+                false
+            }
+        }
+        binding.etSearchCafe.setOnKeyListener { _, keyCode, event ->
+            if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
+                viewModel.onSearchClick()
+                true
+            } else {
+                false
             }
         }
         binding.ivSearchCafe.setOnClickListener {
