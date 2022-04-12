@@ -11,7 +11,9 @@ class SearchCafeAdapter : PagingDataAdapter<Document, SearchCafeViewHolder>(Diff
     }
 
     override fun onBindViewHolder(holder: SearchCafeViewHolder, position: Int) {
-        holder.bind(getItem(position) ?: Document.empty())
+        // PagingConfig.enablePlaceholders = true 인 경우 getItem(position): Nullable
+        // PagingConfig.enablePlaceholders = false 인 경우 getItem(position): NonNull
+        holder.bind(getItem(position)!!)
     }
 
     private object DiffCallback : DiffUtil.ItemCallback<Document>() {

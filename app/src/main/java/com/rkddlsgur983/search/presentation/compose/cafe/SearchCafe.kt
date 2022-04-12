@@ -23,7 +23,6 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
 import com.rkddlsgur983.search.presentation.cafe.SearchCafeViewModel
 import com.rkddlsgur983.search.presentation.cafe.model.Document
-import com.rkddlsgur983.search.util.extension.fromHtml
 
 @Composable
 fun SearchCafe(searchCafeViewModel: SearchCafeViewModel = viewModel()) {
