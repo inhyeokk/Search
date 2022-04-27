@@ -13,7 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Search.NoActionBar">
         <activity
-            android:name=".presentation.MainActivity"
+            android:name=".presentation.MainActivity">
+        </activity>
+        <activity
+            android:name=".presentation.ui.SearchActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,12 +24,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".presentation.ui.SearchActivity"
-            android:exported="false" />
-        <activity
-            android:name=".presentation.compose.SearchComposeActivity"
-            android:exported="false" />
+        <activity android:name=".presentation.compose.SearchComposeActivity" />
     </application>
 
 </manifest>
