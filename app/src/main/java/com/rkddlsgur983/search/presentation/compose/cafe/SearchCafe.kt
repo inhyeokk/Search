@@ -31,7 +31,7 @@ fun SearchCafe(searchCafeViewModel: SearchCafeViewModel = viewModel()) {
     SearchCafeList(
         query = query,
         onQueryChanged = { searchCafeViewModel.setQuery(it) },
-        onSearchClicked = { searchCafeViewModel.onSearchClick(query) },
+        onSearchClicked = { searchCafeViewModel.onClickSearch(query) },
         documents = documents
     )
 }

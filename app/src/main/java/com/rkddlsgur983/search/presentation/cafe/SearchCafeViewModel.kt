@@ -7,6 +7,7 @@ import androidx.paging.cachedIn
 import androidx.paging.map
 import com.rkddlsgur983.search.data.remote.cafe.SortType
 import com.rkddlsgur983.search.domain.cafe.SearchCafeRepository
+import com.rkddlsgur983.search.presentation.cafe.event.Event
 import com.rkddlsgur983.search.presentation.cafe.model.Document
 import com.rkddlsgur983.search.util.extension.fromHtml
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -21,11 +22,13 @@ class SearchCafeViewModel @Inject constructor(
 
     val queryStateFlow = MutableStateFlow("")
     private val sortTypeStateFlow = MutableStateFlow(SortType.ACCURACY)
-    private val onSearchClick = MutableStateFlow(queryStateFlow.value)
+    private val onClickSearch = MutableStateFlow(queryStateFlow.value)
+    private val _eventFlow = MutableStateFlow<Event?>(null)
+    val eventFlow: StateFlow<Event?> = _eventFlow
 
     @ExperimentalCoroutinesApi
     val documentListStateFlow: Flow<PagingData<Document>> =
-        onSearchClick.flatMapLatest(this::searchCafe)
+        onClickSearch.flatMapLatest(this::searchCafe)
 
     private fun searchCafe(query: String): Flow<PagingData<Document>> {
         return searchCafeRepository.searchCafe(query, sortTypeStateFlow.value)
@@ -49,8 +52,12 @@ class SearchCafeViewModel @Inject constructor(
         queryStateFlow.value = query
     }
 
-    fun onSearchClick(query: String = queryStateFlow.value) {
-        onSearchClick.value = query
+    fun onClickSearch(query: String = queryStateFlow.value) {
+        onClickSearch.value = query
+    }
+
+    fun onClickRetry() {
+        _eventFlow.value = Event.OnClickRetry
     }
 
 }
