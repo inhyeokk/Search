@@ -12,13 +12,13 @@ import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import com.inhyeokk.search.R
 import com.inhyeokk.search.databinding.FragmentSearchCafeBinding
+import com.inhyeokk.search.extension.launchWithLifecycle
 import com.inhyeokk.search.presentation.cafe.SearchCafeViewModel
 import com.inhyeokk.search.presentation.cafe.event.Event
 import com.inhyeokk.search.presentation.ui.cafe.adapter.SearchCafeAdapter
 import com.inhyeokk.search.presentation.ui.cafe.adapter.SearchCafeLoadStateAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChangedBy
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.launch
@@ -84,21 +84,17 @@ class SearchCafeFragment : Fragment(R.layout.fragment_search_cafe) {
     }
 
     private fun initViewModel(searchCafeAdapter: SearchCafeAdapter) {
-        lifecycleScope.launch {
-            viewModel.eventFlow.collectLatest {
-                when (it) {
-                    is Event.OnClickRetry -> {
-                        searchCafeAdapter.retry()
-                    }
-                    else -> {
-                    }
+        viewModel.eventFlow.launchWithLifecycle(fragment = this) {
+            when (it) {
+                is Event.OnClickRetry -> {
+                    searchCafeAdapter.retry()
+                }
+                else -> {
                 }
             }
         }
-        lifecycleScope.launch {
-            viewModel.documentListStateFlow.collectLatest { pagingData ->
-                searchCafeAdapter.submitData(pagingData)
-            }
+        viewModel.documentListStateFlow.launchWithLifecycle(fragment = this) { pagingData ->
+            searchCafeAdapter.submitData(pagingData)
         }
     }
 }

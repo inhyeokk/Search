@@ -1,4 +1,4 @@
-package com.inhyeokk.search.util.extension
+package com.inhyeokk.search.extension
 
 import android.text.Html
 

@@ -9,7 +9,7 @@ import com.inhyeokk.search.data.remote.cafe.SortType
 import com.inhyeokk.search.domain.cafe.SearchCafeRepository
 import com.inhyeokk.search.presentation.cafe.event.Event
 import com.inhyeokk.search.presentation.cafe.model.Document
-import com.inhyeokk.search.util.extension.fromHtml
+import com.inhyeokk.search.extension.fromHtml
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.*
