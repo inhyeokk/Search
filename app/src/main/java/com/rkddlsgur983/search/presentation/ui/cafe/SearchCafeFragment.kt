@@ -24,7 +24,6 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class SearchCafeFragment : Fragment(R.layout.fragment_search_cafe) {
-
     private val viewModel by viewModels<SearchCafeViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

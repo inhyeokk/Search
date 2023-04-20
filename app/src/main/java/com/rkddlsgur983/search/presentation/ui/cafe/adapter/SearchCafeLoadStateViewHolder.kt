@@ -8,9 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.rkddlsgur983.search.databinding.ItemSearchCafeLoadStateBinding
 
 class SearchCafeLoadStateViewHolder private constructor(
-    private val binding: ItemSearchCafeLoadStateBinding,
-    loadState: LoadState,
-    onRetry: () -> Unit
+    private val binding: ItemSearchCafeLoadStateBinding, loadState: LoadState, onRetry: () -> Unit
 ) : RecyclerView.ViewHolder(binding.root) {
 
     init {
@@ -29,14 +27,10 @@ class SearchCafeLoadStateViewHolder private constructor(
 
     companion object {
         fun create(
-            parent: ViewGroup,
-            loadState: LoadState,
-            onRetry: () -> Unit
+            parent: ViewGroup, loadState: LoadState, onRetry: () -> Unit
         ): SearchCafeLoadStateViewHolder {
             val binding = ItemSearchCafeLoadStateBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
+                LayoutInflater.from(parent.context), parent, false
             )
             return SearchCafeLoadStateViewHolder(binding, loadState, onRetry)
         }

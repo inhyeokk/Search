@@ -17,7 +17,9 @@ class SearchCafePagingSource(
         if (query.isNotEmpty()) {
             val page = params.key ?: STARTING_PAGE_INDEX
             return try {
-                val response = searchCafeApi.searchCafe(query, sortType.value, page, params.loadSize)
+                val response = searchCafeApi.searchCafe(
+                    query, sortType.value, page, params.loadSize
+                )
                 val documents = response.documents
                 LoadResult.Page(
                     data = documents,

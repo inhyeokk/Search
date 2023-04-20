@@ -16,7 +16,9 @@ class SearchCafeViewHolder private constructor(
 
     companion object {
         fun create(parent: ViewGroup): SearchCafeViewHolder {
-            val binding = ItemSearchCafeBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            val binding = ItemSearchCafeBinding.inflate(
+                LayoutInflater.from(parent.context), parent, false
+            )
             return SearchCafeViewHolder(binding)
         }
     }

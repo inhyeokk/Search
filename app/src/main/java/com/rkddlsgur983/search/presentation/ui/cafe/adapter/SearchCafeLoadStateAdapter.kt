@@ -9,8 +9,7 @@ class SearchCafeLoadStateAdapter(
 ) : LoadStateAdapter<SearchCafeLoadStateViewHolder>() {
 
     override fun onCreateViewHolder(
-        parent: ViewGroup,
-        loadState: LoadState
+        parent: ViewGroup, loadState: LoadState
     ): SearchCafeLoadStateViewHolder {
         return SearchCafeLoadStateViewHolder.create(parent, loadState, onRetry)
     }
