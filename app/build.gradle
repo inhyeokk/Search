@@ -8,12 +8,13 @@ plugins {
 android {
     compileSdk 31
 
-    dataBinding {
-        enabled = true
+    buildFeatures {
+        dataBinding = true
+        viewBinding = true
     }
 
     defaultConfig {
-        applicationId "com.rkddlsgur983.search"
+        applicationId "com.inhyeokk.search"
         minSdk 24
         targetSdk 31
         versionCode 1

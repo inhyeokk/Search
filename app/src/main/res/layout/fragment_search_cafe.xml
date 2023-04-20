@@ -7,7 +7,7 @@
 
         <variable
             name="vm"
-            type="com.rkddlsgur983.search.presentation.cafe.SearchCafeViewModel" />
+            type="com.inhyeokk.search.presentation.cafe.SearchCafeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
