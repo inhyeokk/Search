@@ -5,6 +5,7 @@ import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.core.view.isVisible
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -36,8 +37,9 @@ class SearchCafeFragment : Fragment(R.layout.fragment_search_cafe) {
     }
 
     private fun initView(binding: FragmentSearchCafeBinding) {
-        binding.vm = viewModel
-        binding.lifecycleOwner = this
+        binding.etSearchCafe.doAfterTextChanged { text ->
+            text?.let { viewModel.setQuery(it.toString()) }
+        }
         binding.etSearchCafe.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 viewModel.onClickSearch()
@@ -53,6 +55,9 @@ class SearchCafeFragment : Fragment(R.layout.fragment_search_cafe) {
             } else {
                 false
             }
+        }
+        binding.btnRetry.setOnClickListener {
+            viewModel.onClickRetry()
         }
     }
 

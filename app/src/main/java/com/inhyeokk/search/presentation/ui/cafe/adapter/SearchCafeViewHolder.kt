@@ -11,7 +11,10 @@ class SearchCafeViewHolder private constructor(
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(document: Document) {
-        binding.document = document
+        binding.tvTitle.text = document.title
+        binding.tvContents.text = document.contents
+        binding.tvCafeName.text = document.cafeName
+        binding.tvDate.text = document.datetime
     }
 
     companion object {
