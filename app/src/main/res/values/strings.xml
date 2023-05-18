@@ -2,4 +2,7 @@
     <string name="app_name">Search</string>
     <string name="retry">다시시도</string>
     <string name="empty">결과가 없습니다.</string>
+
+    <string name="SearchCafeActivity_title">카페 검색</string>
+    <string name="SearchCafeActivity_empty">검색 결과가 없습니다.</string>
 </resources>
