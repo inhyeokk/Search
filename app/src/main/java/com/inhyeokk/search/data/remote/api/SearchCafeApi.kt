@@ -1,6 +1,6 @@
 package com.inhyeokk.search.data.remote.api
 
-import com.inhyeokk.search.data.remote.cafe.model.SearchCafeResponse
+import com.inhyeokk.search.data.remote.model.SearchCafeResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
