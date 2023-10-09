@@ -7,12 +7,11 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-object KakaoSearchServiceFactory {
+private const val REST_API_KEY = "11c910a4fdc84019077e83af26a733f8"
 
-    private const val BASE_URL = "https://dapi.kakao.com"
-    private const val REST_API_KEY = "11c910a4fdc84019077e83af26a733f8"
+object KakaoServiceFactory {
 
-    fun <T> create(apiClass: Class<T>): T {
+    fun <T> create(apiClass: Class<T>, baseUrl: BaseUrl = BaseUrl.DEFAULT): T {
         val logger = HttpLoggingInterceptor().apply {
             level = HttpLoggingInterceptor.Level.BODY
         }
@@ -23,7 +22,7 @@ object KakaoSearchServiceFactory {
             .build()
 
         return Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(baseUrl.value)
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
@@ -33,6 +32,7 @@ object KakaoSearchServiceFactory {
     private object HeaderInterceptor : Interceptor {
         override fun intercept(chain: Interceptor.Chain): Response {
             val request = chain.request().newBuilder().apply {
+                addHeader("Content-Type", "application/json")
                 addHeader("Authorization", "KakaoAK $REST_API_KEY")
             }.build()
             return chain.proceed(request)

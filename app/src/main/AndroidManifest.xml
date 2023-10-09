@@ -13,8 +13,9 @@
         android:theme="@style/Theme.Search.NoActionBar">
         <activity android:name=".presentation.screen.MainActivity" />
         <activity android:name=".presentation.screen.SearchActivity" />
+        <activity android:name=".presentation.screen.SearchComposeActivity" />
         <activity
-            android:name=".presentation.screen.SearchComposeActivity"
+            android:name=".presentation.screen.kogpt.KoGPTActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
